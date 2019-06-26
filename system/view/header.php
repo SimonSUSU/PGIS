@@ -42,8 +42,18 @@
 			echo '</ol>';
 		}
 		
-		if($this->HCTL_url(array('area','index')) || $this->HCTL_url(array('user','index')) || $this->HCTL_url(array('purviewgroup','index')) ){
+		if($this->HCTL_url(array('area','index')) || $this->HCTL_url(array('user','index')) || $this->HCTL_url(array('purviewgroup','index')) ){			
 			echo '<ol>';
+			echo '<dl>';
+			$this->CTL_url(array('area','index'), '区域管理', (Router::$s_controller == 'area') ? 'class="act"' : '');
+			$this->CTL_url(array('user','index'), '用户管理', (Router::$s_controller == 'user') ? 'class="act"' : '');
+			$this->CTL_url(array('purviewgroup','index'), '权限组管理', (Router::$s_controller == 'purviewgroup') ? 'class="act"' : '');
+			$this->CTL_url(array('purview','index'), '权限节点管理', (Router::$s_controller == 'purview') ? 'class="act"' : '');
+			$this->CTL_url(array('setting','index'), '系统设置', (Router::$s_controller == 'setting') ? 'class="act"' : '');
+			if($this->HCTL_url(array('setting','flushMemcache')) && $this->user_id ==1 ){
+				echo '<a href="'.url(array('setting','flushMemcache')).'" onclick="return confirm(\'确定要清理缓存？\');">清理缓存</a>';
+			}
+			echo '</dl>';
 			$side_menu = (
 				Router::$s_controller == 'setting' ||
 				Router::$s_controller == 'area' ||
@@ -62,17 +72,6 @@
 			}elseif($this->HCTL_url(array('purview','index'))){
 				$this->CTL_url(array('purview','index'), '<i class="fa fa-gear fa-fw"></i>配置', ($side_menu == 'system') ? 'class="act"' : '');
 			}
-			echo '<dl>';
-			$this->CTL_url(array('area','index'), '区域管理', (Router::$s_controller == 'area') ? 'class="act"' : '');
-			$this->CTL_url(array('user','index'), '用户管理', (Router::$s_controller == 'user') ? 'class="act"' : '');
-			$this->CTL_url(array('purviewgroup','index'), '权限组管理', (Router::$s_controller == 'purviewgroup') ? 'class="act"' : '');
-			$this->CTL_url(array('purview','index'), '权限节点管理', (Router::$s_controller == 'purview') ? 'class="act"' : '');
-			$this->CTL_url(array('setting','index'), '系统设置', (Router::$s_controller == 'setting') ? 'class="act"' : '');
-			if($this->HCTL_url(array('setting','flushMemcache')) && $this->user_id ==1 ){
-				echo '<a href="'.url(array('setting','flushMemcache')).'" onclick="return confirm(\'确定要清理缓存？\');">清理缓存</a>';
-			}
-			echo '</dl>';
-			
 			echo '</ol>';
 		}
 

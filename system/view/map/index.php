@@ -10,7 +10,7 @@ function mapInit(){
 
     var map = new AMap.Map("container",{
         viewMode:'3D',//开启3D视图,默认为关闭
-        pitch: 60,// 地图俯仰角度，有效范围0度~83度
+        pitch: 50,// 地图俯仰角度，有效范围0度~83度
         //rotation: 90,
         zoom: 18,//初始地图级别
         center: [<?=$rs['lnglat']?>], //初始地图中心点
