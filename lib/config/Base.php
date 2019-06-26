@@ -548,6 +548,16 @@ public function curl_get($url){
     return $httpCode;
 }
 
+//转议文件地址
+public function file_path($file){    
+    if(empty($file)){
+       return false; 
+    }
+    $site_config = site_config();
+    $file = $site_config['file_url'].'/'.$file;
+    return $file;
+}
+
 //生成小图
 public function img($url, $width, $height, $default_none_pic ='nopic'){
     $site_config = site_config();

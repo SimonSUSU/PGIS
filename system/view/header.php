@@ -154,28 +154,18 @@
 			Router::$s_controller == 'area' ||
 			Router::$s_controller == 'purviewgroup' ||
 			Router::$s_controller == 'purview' ||
-			Router::$s_controller == 'user' ||
-			//Router::$s_controller == 'hot' ||
-			Router::$s_controller == 'store'
+			Router::$s_controller == 'user'
 			) ? 'system' : $side_menu;
-		if($this->HCTL_url(array('store','index'))){
-			$menu_num++;
-			$this->CTL_url(array('store','index'), '基础系统', ($side_menu == 'system') ? 'class="act"' : '');
-		}elseif($this->HCTL_url(array('area','index'))){
+		if($this->HCTL_url(array('area','index'))){
 			$menu_num++;
 			$this->CTL_url(array('area','index'), '基础系统', ($side_menu == 'system') ? 'class="act"' : '');
 		}elseif($this->HCTL_url(array('user','index'))){
 			$menu_num++;
 			$this->CTL_url(array('user','index'), '基础系统', ($side_menu == 'system') ? 'class="act"' : '');
-		}elseif($this->HCTL_url(array('hot','index'))){
-			$menu_num++;
-			$this->CTL_url(array('hot','index'), '基础系统', ($side_menu == 'system') ? 'class="act"' : '');
 		}elseif($this->HCTL_url(array('setting','index'))){
 			$menu_num++;
 			$this->CTL_url(array('setting','index'), '基础系统', ($side_menu == 'system') ? 'class="act"' : '');
-		}
-
-		elseif($this->HCTL_url(array('purviewgroup','index'))){
+		}elseif($this->HCTL_url(array('purviewgroup','index'))){
 			$menu_num++;
 			$this->CTL_url(array('purviewgroup','index'), '基础系统', ($side_menu == 'system') ? 'class="act"' : '');
 		}elseif($this->HCTL_url(array('purview','index'))){
@@ -202,8 +192,16 @@
 
 
 			case 'map':
-				$this->CTL_url(array('map','index'), '<i class="fa fa-life-ring fa-fw"></i>海南特勤局', (Router::$s_controller == 'map' && Router::$s_method == 'index') ? 'class="act"' : '');
-				$this->CTL_url(array('map','hotel'), '<i class="fa fa-life-ring fa-fw"></i>海口喜来登酒店', (Router::$s_controller == 'map' && Router::$s_method == 'hotel') ? 'class="act"' : '');
+				if($this->HCTL_url(array('map','index'))){
+					$this->area_Obj = $this->load_class_wz('areaClass');
+					$rs = $this->area_Obj->lists(array(),'area_id,name');
+					if($rs['code']=='Success'){
+						foreach ($rs['item'] as $k => $v){
+							$act = (!empty($area_id) && $v['area_id']==$area_id) ? 'class="act"':'';
+							echo '<a '.$act.' href="'.url(array('map','index',$v['area_id'])).'">'.$v['name'].'</a>';
+						}
+					}
+				}
 			break;
 
 
@@ -288,12 +286,11 @@
 			break;
 
 			case 'system':
-				$this->CTL_url(array('store','index'), '<i class="fa fa-shopping-cart fa-fw"></i>超市管理', (Router::$s_controller == 'store') ? 'class="act"' : '');
+				$this->CTL_url(array('area','index'), '<i class="fa fa-sitemap fa-fw"></i>区域管理', (Router::$s_controller == 'area') ? 'class="act"' : '');
+
 				$this->CTL_url(array('user','index'), '<i class="fa fa-user fa-fw"></i>用户管理', (Router::$s_controller == 'user') ? 'class="act"' : '');
-				//$this->CTL_url(array('hot','index'), '<i class="fa fa-adn fa-fw"></i>推荐管理', (Router::$s_controller == 'hot') ? 'class="act"' : '');
 				$this->CTL_url(array('purviewgroup','index'), '<i class="fa fa-group fa-fw"></i>权限组管理', (Router::$s_controller == 'purviewgroup') ? 'class="act"' : '');
 				$this->CTL_url(array('purview','index'), '<i class="fa fa-cogs fa-fw"></i>权限节点管理', (Router::$s_controller == 'purview') ? 'class="act"' : '');
-				$this->CTL_url(array('area','index'), '<i class="fa fa-sitemap fa-fw"></i>区域管理', (Router::$s_controller == 'area') ? 'class="act"' : '');
 				$this->CTL_url(array('setting','index'), '<i class="fa fa-gear fa-fw"></i>系统设置', (Router::$s_controller == 'setting') ? 'class="act"' : '');
 				if($this->HCTL_url(array('setting','flushMemcache')) && $this->user_id ==1 ){
 					echo '<a href="'.url(array('setting','flushMemcache')).'" onclick="return confirm(\'确定要清理缓存？\');"><i class="fa fa-refresh fa-fw"></i>清理缓存</a>';

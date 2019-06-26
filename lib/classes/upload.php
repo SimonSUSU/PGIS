@@ -9,6 +9,10 @@ class Upload{
 		'image/x-png'
 	);
 
+	private $_gltf_type = array(
+		'application/octet-stream',
+	);
+
 	private $_type = array(
 		'image/pjpeg',
 		'image/jpeg',
@@ -47,7 +51,7 @@ class Upload{
 			if($ext != $type){
 				return array('code' =>'Error', 'codeNo'=>5, 'msg' => '当前上传的文件为'.$type.'文件，但扩展名为'.$ext.'，请更正后再上传！');
 			}
-		}		
+		}
 
 		switch ($limit_type) {
 			case 'pic'://限制类型只为图片
@@ -62,6 +66,12 @@ class Upload{
 
 			case 'xls'://限制类型只为XLS
 			# code...
+			break;
+
+			case 'gltf'://限制类型只为gltf
+				if(!is_uploaded_file($file_arr['tmp_name']) || !in_array($file_arr['type'], $this->_gltf_type)){
+					return array('code' =>'Error', 'codeNo'=>1, 'msg' =>'只允许gltf文件');
+				}
 			break;
 			
 			default:
