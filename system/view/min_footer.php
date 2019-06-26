@@ -14,16 +14,4 @@ function openWin(url,width,height,title,endReload){
         }
 	});
 }
-
-
-var windowHeight=$(window).height();
-sizeCost(windowHeight);
-$(window).resize(function(){
-   windowHeight=$(this).height();
-   sizeCost(windowHeight);
-});
-
-function sizeCost(windowHeight){
-	$(".tsovMain").css("height",(windowHeight-20)+'px');
-}
 </script>

@@ -10,14 +10,14 @@
 <title>找不到页面</title>
 <style>
 html{font:14px "Helvetica Neue",Helvetica,Arial,sans-serif; overflow: auto;}
-body{font:14px "Helvetica Neue",Helvetica,Arial,sans-serif; background:#4caf50; line-height:165%; margin:0; padding:0; color:#474747;}
+body{font:14px "Helvetica Neue",Helvetica,Arial,sans-serif; background:rgba(38,43,63,1); line-height:165%; margin:0; padding:0; color:#474747;}
 form,ul,ol,li,dl,dt,dd,form,img,p,h3,h6{margin:0; padding:0; border:none; list-style-type:none;}
-a:link, a:visited{text-decoration:underline;color:#4caf50; font-size:180%;}
+a:link, a:visited{text-decoration:underline;color:rgba(38,43,63,1); font-size:180%;}
 a:hover{color:#333; text-decoration:underline;}
 
 .body404{margin:5% auto; width:80%; max-width:580px;  background:#fff; padding:20px;}
 .body404 h3{font-size:300%; text-align: center; height:60px; line-height:60px; overflow:hidden; margin:20px 0;}
-.body404 h2{font-size:800%; color:#4caf50; height:100px; line-height:100px; overflow:hidden; margin:10px 0; text-align:center;}
+.body404 h2{font-size:800%; color:rgba(38,43,63,1); height:100px; line-height:100px; overflow:hidden; margin:10px 0; text-align:center;}
 .body404 ul{}
 .body404 ul dl{font-size:180%; margin:0 0 20px 0; text-align:center;}
 .body404 ul p{color:#999;}

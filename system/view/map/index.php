@@ -1,14 +1,7 @@
 <? $this->load_view('header',array('area_id'=>$rs['area_id'])); ?>
-<style>
-#container{height: 100%}
-.amap-logo, .amap-copyright{display:none!important;}
-</style>
+<div id="container"></div>
 
-</head>
-<body onLoad="mapInit()">
-    <div id="container"></div>
-</body>
-
+<? $this->load_view('footer'); ?>
 <script language="javascript" src="//webapi.amap.com/maps?v=1.4.9&key=ebd77d08ae12619495fca064ce5c2296&plugin=Map3D"></script>
 <script language="javascript">
 function mapInit(){
@@ -37,9 +30,9 @@ function mapInit(){
     AMap.plugin([
         'AMap.ControlBar',//添加3D罗盘控制
         //'AMap.ToolBar',     //添加工具条控件
-        'AMap.Scale',   //添加比例尺控件
+        //'AMap.Scale',   //添加比例尺控件
        // 'AMap.OverView',    //添加鹰眼控件
-        'AMap.MapType', //在图面添加类别切换控件
+       // 'AMap.MapType', //在图面添加类别切换控件
         //'AMap.Geolocation'  //在图面添加定位控件
         ], function(){       
             // 添加3D罗盘控制,组合了旋转、倾斜、复位、缩放在内的地图控件，在3D地图模式下会显示
@@ -49,13 +42,13 @@ function mapInit(){
             //map.addControl(new AMap.ToolBar());
 
             // 在图面添加比例尺控件，展示地图在当前层级和纬度下的比例尺
-            map.addControl(new AMap.Scale({position:'RB'}));
+            //map.addControl(new AMap.Scale({position:'RB'}));
 
             // 在图面添加鹰眼控件，在地图右下角显示地图的缩略图
             //map.addControl(new AMap.OverView({isOpen:true}));
 
             // 在图面添加类别切换控件，实现默认图层与卫星图、实施交通图层之间切换的控制
-            map.addControl(new AMap.MapType());
+           // map.addControl(new AMap.MapType());
 
             // 在图面添加定位控件，用来获取和展示用户主机所在的经纬度位置
             //map.addControl(new AMap.Geolocation());
@@ -101,6 +94,3 @@ function mapInit(){
     });
 }
 </script>
-
-
-<? $this->load_view('footer'); ?>

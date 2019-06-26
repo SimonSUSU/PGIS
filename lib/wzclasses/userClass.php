@@ -18,17 +18,7 @@ class userClass extends Controllers{
         $p = empty($post['page']) ? 0 : $post['page'];
         $offset = ($p <= 0) ? 0 : ($p - 1) * $pageSize;
 
-        $where = '';
-
-        if (!empty($post['is_householder'])){   //是否户主：1不是，2是
-            $where .= ' AND is_householder='.$post['is_householder'];
-        } 
-        if (!empty($post['label'])){    //1未脱贫，2已脱贫
-            $where .= ' AND label='.$post['label'];
-        }
-        if (!empty($post['type'])){ //类型：1贫困户，2非贫因户（需要配合村民字段使用）
-            $where .= ' AND type='.$post['type'];
-        }
+        $where = '';       
 
         if (!empty($post['status'])){
             $where .= ' AND status='.$post['status'];
@@ -39,27 +29,6 @@ class userClass extends Controllers{
         if (!empty($post['purviewgroup_id'])){
             $where .= ' AND purviewgroup_id='.$post['purviewgroup_id'];
         }
-        if (!empty($post['is_villager'])){
-            $where .= ' AND is_villager='.$post['is_villager'];
-        }
-        if (!empty($post['is_villagecadre'])){
-            $where .= ' AND is_villagecadre='.$post['is_villagecadre'];
-        }
-        if (!empty($post['is_towncadre'])){
-            $where .= ' AND is_towncadre='.$post['is_towncadre'];
-        }
-        if (!empty($post['is_platform'])){
-            $where .= ' AND is_platform='.$post['is_platform'];
-        }
-        if (!empty($post['is_pricebureau'])){
-            $where .= ' AND is_pricebureau='.$post['is_pricebureau'];
-        }
-        if (!empty($post['is_finance'])){
-            $where .= ' AND is_finance='.$post['is_finance'];
-        }
-        if (!empty($post['weixin_sex'])){
-            $where .= ' AND weixin_sex='.$post['weixin_sex'];
-        }
 
         if (!empty($post['sn'])){
             $where .= ' AND sn="'.$post['sn'].'"';
@@ -68,15 +37,6 @@ class userClass extends Controllers{
         if (!empty($post['phone'])){
             $where .= ' AND phone="'.$post['phone'].'"';
         }
-
-        if (!empty($post['area_id']) && !empty((int)$post['area_id'])){
-            $area_data_rs = $this->db->select(' ', 'area_id,pid','wz_area');
-            $this->area_Obj = $this->load_class_wz('areaClass');
-            $area_id_arr = $this->area_Obj->scanNodeOfTree($area_data_rs, $post['area_id']);
-            $area_id_arr[] = $post['area_id'];
-            $where .= ' AND area_id IN('. implode(',', $area_id_arr) .')';
-        }
-
         if (isset($post['user_ids'])){
             $where .= ' AND user_id IN('. implode(',', $post['user_ids']) .')';//多个时用IN查
         }
@@ -120,25 +80,15 @@ class userClass extends Controllers{
          
         if(isset($post['sort'])) {
             switch ($post['sort']){
-            	case 'area_id'://所属地区
-                    $where .=' ORDER BY area_id '.$order.', user_id '.$order;
-                break;               
-
+            	
                 case 'sex_str'://sex
                     $where .=' ORDER BY sex '.$order.', user_id '.$order;
                 break;
 
-                case 'birth'://birth
-                    $where .=' ORDER BY birth '.$order.', user_id '.$order;
-                break;
-
+              
                 case 'status_str'://状态
                     $where .=' ORDER BY status '.$order.', user_id '.$order;
-                break;
-
-                case 'points_total'://积分量
-                    $where .=' ORDER BY points_total '.$order.', user_id '.$order;
-                break;
+                break;               
 
                 case 'purviewgroup_id'://权限组
                     $where .=' ORDER BY purviewgroup_id '.$order.', user_id '.$order;
@@ -155,43 +105,6 @@ class userClass extends Controllers{
                 case 'last_time_str'://最后修改日期
                     $where .=' ORDER BY last_time '.$order.', user_id '.$order;
                 break;
-
-                case 'weixin_lastupdate_time_str'://微信资料更新时间
-                    $where .=' ORDER BY weixin_lastupdate_time '.$order.', user_id '.$order;
-                break;
-
-                case 'weixin_subscribe_time_str'://微信关注时间
-                    $where .=' ORDER BY weixin_subscribe_time '.$order.', user_id '.$order;
-                break;                
-
-                case 'is_villager_str'://是否村民：0其它，1是贫因户，2非贫因户
-                    $where .=' ORDER BY is_villager '.$order.', user_id '.$order;
-                break;
-                case 'is_villagecadre_str'://是否村干部：0否，1是
-                    $where .=' ORDER BY is_villagecadre '.$order.', user_id '.$order;
-                break;
-                case 'is_towncadre_str'://是否是乡镇干部：0否，1是
-                    $where .=' ORDER BY is_towncadre '.$order.', user_id '.$order;
-                break;
-                case 'is_platform_str'://是否电商办工作人员：0否，1是
-                    $where .=' ORDER BY is_platform '.$order.', user_id '.$order;
-                break;
-                case 'is_pricebureau_str'://是否是物价局工作人员：1否，1是
-                    $where .=' ORDER BY is_pricebureau '.$order.', user_id '.$order;
-                break;
-                case 'is_finance_str'://是否财政局工作人员：0否，1是
-                    $where .=' ORDER BY is_finance '.$order.', user_id '.$order;
-                break;
-
-                case 'label_str'://1未脱贫，2已脱贫
-                    $where .=' ORDER BY label '.$order.', user_id '.$order;
-                break;
-                case 'type_str'://类型：1贫困户，2非贫因户
-                    $where .=' ORDER BY type '.$order.', user_id '.$order;
-                break;
-                case 'is_householder_str'://是否户主：1不是，2是
-                    $where .=' ORDER BY is_householder '.$order.', user_id '.$order;
-                break;
                 
                 default:
                     $where .=' ORDER BY user_id '.$order; 
@@ -205,110 +118,28 @@ class userClass extends Controllers{
         if(empty($rs)){
             return array('code' =>'Empty', 'msg' => '没有符合条件的用户');
         }
-        
-        //$user_id_arr = array();
         $purviewgroup_id_arr = array();
-        $area_id_arr = array();
         foreach ($rs as $k => $v){
-        	//if(isset($v['user_id']) && !empty($v['user_id'])){
-            //    $user_id_arr[] = $v['user_id'];
-            //}
             if(isset($v['purviewgroup_id']) && !empty($v['purviewgroup_id'])){//权限组
                 $purviewgroup_id_arr[] = $v['purviewgroup_id'];
-            }
-            if(isset($v['area_id']) && !empty($v['area_id'])){
-                $area_id_arr[] = $v['area_id'];
             }
         }
 
         if(!empty($purviewgroup_id_arr)){
             $purviewgroup_rs = $this->db->select(array('purviewgroup_id' =>$purviewgroup_id_arr),'purviewgroup_id,name', 'wz_purviewgroup','purviewgroup_id');
         }
-        if(!empty($area_id_arr)){
-            $areaArr = $this->db->select('','area_id as id, pid,name','wz_area'); //因为多级需要计算，所以查出所有  
-        }
 
         foreach ($rs as $k => $v){
-            if(isset($v['area_id']) && !empty($v['area_id'])){
-                $rs[$k]['area_rs'] = genTree($areaArr, $v['area_id'], 'parent');
-
-                $areaStr = '';
-                if(!empty($rs[$k]['area_rs'])){
-                    foreach($rs[$k]['area_rs'] as $kk=>$vv){
-                        $areaStr = $vv['name'].'/'.$areaStr;
-                    }
-                    $areaStr = trim($areaStr,'/');
-                    $rs[$k]['area_str'] = $areaStr;
-                }
-            }
-
             if(isset($v['purviewgroup_id']) && !empty($v['purviewgroup_id'])  && !empty($purviewgroup_rs[$v['purviewgroup_id']])  ){//权限组
                 $rs[$k]['purviewgroup_arr'] = $purviewgroup_rs[$v['purviewgroup_id']];
             }
-
-            if(isset($v['pics']) && !empty($v['pics'])){
-                $pics = explode(',',$v['pics']);
-                if(!empty($pics)){
-                    foreach ($pics as $kk => $vv){
-                        if( !empty($post['imgWidth']) || !empty($post['imgHeight']) ){
-                            $pics[$kk] = $this->img($vv,$post['imgWidth'],$post['imgHeight']);
-                        }else{
-                            $pics[$kk] = $this->img($vv,0,0);
-                        }
-                    }
-                    $rs[$k]['pics'] = $pics;
-                }
-            }
-
-            if(!empty($v['birth'])){
-                $rs[$k]['age'] = get_age($v['birth']);
-            }
-
-            if(isset($v['is_villager'])){
-                $rs[$k]['is_villager_str'] = $this->user_attribute_arr[$v['is_villager']];
-            }
-            if(isset($v['is_villagecadre'])){
-                $rs[$k]['is_villagecadre_str'] = $this->user_attribute_arr[$v['is_villagecadre']];
-            }
-
-            if(isset($v['is_towncadre'])){
-                $rs[$k]['is_towncadre_str'] = $this->user_attribute_arr[$v['is_towncadre']];
-            }
-            if(isset($v['is_platform'])){
-                $rs[$k]['is_platform_str'] = $this->user_attribute_arr[$v['is_platform']];
-            }
-            if(isset($v['is_pricebureau'])){
-                $rs[$k]['is_pricebureau_str'] = $this->user_attribute_arr[$v['is_pricebureau']];
-            }
-            if(isset($v['is_finance'])){
-                $rs[$k]['is_finance_str'] = $this->user_attribute_arr[$v['is_finance']];
-            }
+           
             if(isset($v['sex'])){
                 $rs[$k]['sex_str'] = $this->sex_arr[$v['sex']];
             }
 
-            if(isset($v['weixin_sex'])){
-                $rs[$k]['weixin_sex_str'] = !empty($this->sex_arr[$v['weixin_sex']]) ? $this->sex_arr[$v['weixin_sex']]:'';
-            }
             if(isset($v['status'])){
                 $rs[$k]['status_str'] = $this->status_arr[$v['status']];
-            }
-
-            if(isset($v['is_householder'])){
-                $rs[$k]['is_householder_str'] = $this->householder_arr[$v['is_householder']];
-            }
-            if(isset($v['label'])){
-                $rs[$k]['label_str'] = $this->villager_label_arr[$v['label']];
-            }
-            if(isset($v['type'])){
-                $rs[$k]['type_str'] = $this->villager_type_arr[$v['type']];
-            }
-
-            if(isset($v['weixin_lastupdate_time']) && !empty($v['weixin_lastupdate_time'])){//微信资料的最后更新时间
-                $rs[$k]['weixin_lastupdate_time_str'] = date('Y-m-d H:i:s',$v['weixin_lastupdate_time']);
-            }
-            if(isset($v['weixin_subscribe_time']) && !empty($v['weixin_subscribe_time'])){	//微信关注时间
-                $rs[$k]['weixin_subscribe_time_str'] = date('Y-m-d H:i:s',$v['weixin_subscribe_time']);
             }
             if(isset($v['last_login_time']) && !empty($v['last_login_time'])){
                 $rs[$k]['last_login_time_str'] = date('Y-m-d H:i:s',$v['last_login_time']);
@@ -320,9 +151,8 @@ class userClass extends Controllers{
                 $rs[$k]['last_time_str'] = date('Y-m-d H:i:s',$v['last_time']);
             }
         }
-        $rs_toall = $this->db->select(' WHERE 1=1 ', 'COUNT(*) AS count, SUM(points_total) AS points','wz_user',0,'',$where_count);
+        $rs_toall = $this->db->select(' WHERE 1=1 ', 'COUNT(*) AS count','wz_user',0,'',$where_count);
         $page['toall'] = $rs_toall[0]['count'];
-        $page['points'] = $rs_toall[0]['points'];
         $page['total_page'] = ceil($rs_toall[0]['count'] / $pageSize);
         $page['pageSize'] = $pageSize;
         $page['page'] = $p;

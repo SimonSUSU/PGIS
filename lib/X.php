@@ -6,7 +6,7 @@ define('FILE_PATH', '/static/files/');
 define('IMG_PATH', '/static/images/');
 define('JS_PATH', '/static/scripts/');
 define('CSS_PATH', '/static/styles/');
-define('SYS_VERSION','baisha-huinong_2019-03-29'.time() );
+define('SYS_VERSION','pgis_2019-03-29'.time() );
 require LIB.'config/config'.EXT;
 require LIB.'config/common'.EXT;
 require LIB.'config/Base'.EXT;
