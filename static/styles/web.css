@@ -1,0 +1,74 @@
+@charset "utf-8";
+html{overflow:hidden; height:100%; font:14px "Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif; outline:none;}
+body{background:#000c46; height:100%; line-height:165%; margin:0; padding:0; color:#333; font:14px "Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif; outline:none;}
+body.indexBG{height:100%; background:#000c46; background-size:cover !important; overflow:hidden;}
+form,ul,ol,li,dl,dt,dd,form,img,p{margin:0; padding:0; border:none; list-style-type:none; outline:none;}
+h1,h2,h3,h4,h5,h6{margin:0; padding:0; border:none; list-style-type:none; font-size:14px; outline:none;}
+img{border:none; outline:none;}
+a:link, a:visited{text-decoration:underline; color:#fff; outline:none;}
+a:hover{color:#000; text-decoration:none;}
+select,button,input{font:14px "Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif; outline:none}
+table{empty-cells:show; border-collapse:collapse;}
+.left{float:left;}
+.right{float:right;}
+.c{clear:both; padding:0;margin:0;height:0; overflow:hidden;}
+.hide{display: none;}
+
+input[type=number] {-moz-appearance:textfield; }
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0;}
+
+
+#bg{position:absolute; z-index:0; top:0;left:0;width:100%; height:100%;}
+#bg .pg-canvas{z-index:0;}
+
+
+.ieCover{position: fixed;left: 0;top: 0;right: 0;bottom: 0;z-index: 999999;background: #fff;}
+.ieCover h1{font-size: 30px;text-align: center;margin-top: 300px;}
+
+.closeBtn{position: fixed;z-index: 9999;right: 0;top:0;text-align: center;line-height: 1;}
+.closeBtn span{display: inline-block;height: 50px;line-height: 1;width: 80px;font-size: 0;cursor: pointer;}
+.closeBtn span:first-child{background: url(web/mini.png) no-repeat center;background-size: 40%;}
+.closeBtn span:last-child{background: url(web/close.png) no-repeat center;background-size: 40%;}
+
+.indexTitle{margin:5% 0; width:100%; text-align:center; font-size:50px; font-weight:normal; color:#fff;}
+
+
+.swiper-container{background:#fff; margin:0 auto; width:420px; height:445px; border-radius:6px; overflow:hidden;}
+.swiper-pagination{border-bottom:1px solid rgba(0,0,0,.1); top:0; height:60px; position:relative;}
+.swiper-pagination ul{font-size:0;}
+.swiper-pagination ul li{width:50%; height:60px; line-height:60px; margin:0!important; text-align:center; border-radius:0; font-size:16px; color:#000; display:inline-block; opacity:1; background:transparent;}
+.swiper-pagination ul li.swiper-pagination-bullet-active{background:transparent; border-bottom:3px solid #4caf50; height:59px; line-height:59px;}
+.swiper-pagination ul li.swiper-pagination-bullet-active{background:transparent;  height:59px; line-height:59px;}
+.swiper-wrapper{z-index:99;}
+
+.loginBox{padding-top: 30px;}
+.loginBox form{margin:30px;}
+.loginBox form p{margin:30px 0; position:relative; text-align:center; overflow:hidden;}
+.loginBox form p input{display:block; width:100%; height:45px;font-size:16px; border:1px solid #ededed; border-radius:3px; padding-left:2em;box-sizing:border-box; -moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+.loginBox form p input:hover{border:1px solid #4caf50; }
+.loginBox form p input.phone{background: url(web/phone.png) no-repeat 2px center; background-size:25px;}
+.loginBox form p input.code{background: url(web/code.png) no-repeat 2px center; background-size:25px; width:48%;}
+.loginBox form p button{display:block; width:100%; background:#4caf50; color:#fff; height:45px; line-height:45px; font-size:20px; text-align:center; border:none; border-radius:3px; cursor:pointer;}
+.loginBox form p button:hover{background:#1FA05F; color:#fff;}
+.loginBox form p button#getCode{padding: 0;font-size:16px; height:45px; line-height:45px; overflow:hidden; width:48%; float:right; background:transparent; border:1px solid #ededed; color:#333;}
+.loginBox form p a:link, .loginBox form p a:visited{text-decoration:underline; color:#999; outline:none;}
+.loginBox form p a:hover{color:#000; text-decoration:none;}
+
+.loginQcode{text-align:center; padding:40px 0;}
+
+
+.copyRight{text-align:center; color:rgba(255,255,255,.5); z-index:100; font-size:12px; margin:10px 0;}
+.copyRight p{padding:10px 0;}
+.copyRight p a:link, .copyRight p a:visited{text-decoration:underline; color:rgba(255,255,255,.5); margin:0 0 0 20px;}
+.copyRight p a:hover{color:rgba(255,255,255,.8); text-decoration:none;}
+
+@media (max-width:500px){
+	.indexTitle{font-size:30px;}
+	.swiper-container{width:96%; height:auto; border-radius:2px;}
+}
+
+@media (max-width:400px){
+	.loginBox form{margin: 20px 15px;}
+	.loginBox form p input.phone{font-size: 14px;text-indent: 20px;padding-left:0;background: url(web/phone.png) no-repeat 2px center; background-size:20px;}
+	.loginBox form p input.code{font-size: 14px;text-indent: 20px;padding-left:0;background: url(web/code.png) no-repeat 2px center; background-size:20px;}
+}
