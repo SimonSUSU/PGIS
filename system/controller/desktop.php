@@ -5,9 +5,9 @@ class Desktop extends ControllersAdmin{
         $this->cookie_Obj = $this->load_class('cookie');
 	}
 
-
-    //后台登录、退出方法
     public function index($act=''){
+    	header("Location:/map/index/");exit;
+
         $temp = array();
         $this->load_view('desktop/index', $temp);
    

@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* 后台 */
 html{overflow-y:auto; font:14px "Helvetica Neue",Helvetica,Arial,sans-serif,'Microsoft YaHei';}
-body{background:#273773; line-height:165%; min-width:1366px; margin:0; padding:0; color:#333; font:14px "Helvetica Neue",Helvetica,Arial,sans-serif,'Microsoft YaHei';}
+body{background:#161933; line-height:165%; min-width:1366px; margin:0; padding:0; color:#333; font:14px "Helvetica Neue",Helvetica,Arial,sans-serif,'Microsoft YaHei';}
 body.noBG{background:#fff; min-width:auto;}
 form,ul,ol,li,dl,dt,dd,form,img,p{margin:0; padding:0; border:none; list-style-type:none;}
 h1,h2,h3,h4,h5,h6{margin:0; padding:0; border:none; list-style-type:none; font-size:14px;}
@@ -51,15 +51,16 @@ a:link.buttonBG, a:visited.buttonBG{display: inline-block;color: #fff;text-decor
     }
 
 .menuWrap ul{}
-.menuWrap ul a:link, .menuWrap ul a:visited{text-decoration:none; display:block; color:rgba(255,255,255,0.5);font-size:16px; text-align:left; border-bottom:1px solid rgba(255,255,255,.05); width:45px; height:45px; line-height:45px; overflow:hidden;}
-.menuWrap ul a:hover{color:#ff0; background:rgba(0,0,0,.1);}
+.menuWrap ul a i{display:block; width:45px; height:20px; line-height:20px; margin:2px 0; overflow:hidden;}
+.menuWrap ul a:link, .menuWrap ul a:visited{text-decoration:none; display:block; color:rgba(255,255,255,0.5); padding:10px 0; font-size:14px; text-align:center; border-bottom:1px solid rgba(255,255,255,.05); width:45px; overflow:hidden;}
+.menuWrap ul a:hover{color:#fff; background:rgba(0,0,0,.1);}
 .menuWrap ul a.act:link, .menuWrap ul a.act:visited{color:rgba(255,255,255,1); background:#4caf50; border-top:1px solid rgba(255,255,255,.1);}
-.menuWrap ul a.act:hover{color:#ff0; background:#4caf50;}
-.menuWrap ul dl{background:rgba(38,43,63,1); display:none; width:150px; position:absolute; left:45px;}
-.menuWrap ul dl a:link, .menuWrap ul dl a:visited{text-indent:1em; width:100%;}
-.menuWrap ul dl a:hover{color:#ff0; background:none;}
-.menuWrap ul dl a.act:link, .menuWrap ul dl a.act:visited{color:rgba(255,255,255,1); background:rgba(0,0,0,.2); border:0;}
-.menuWrap ul dl a.act:hover{color:#ff0; background:rgba(0,0,0,.1);}
+.menuWrap ul a.act:hover{color:#fff; background:#4caf50;}
+.menuWrap ul dl{background:rgba(38,43,63,.8); display:none; width:150px; position:absolute; left:45px;}
+.menuWrap ul dl a:link, .menuWrap ul dl a:visited{text-indent:1em; width:100%; height:45px; line-height:45px; font-size:14px; text-align:left; padding:0;}
+.menuWrap ul dl a:hover{color:#fff; background:#4caf50;}
+.menuWrap ul dl a.act:link, .menuWrap ul dl a.act:visited{color:#fff; background:#4caf50; border:0;}
+.menuWrap ul dl a.act:hover{color:#fff; background:#4caf50;}
 
 .menuWrap ul dl.my{color:#fff; text-align:center; height:160px; width:200px; overflow:hidden;}
 .menuWrap ul dl.my h1{}
@@ -68,7 +69,7 @@ a:link.buttonBG, a:visited.buttonBG{display: inline-block;color: #fff;text-decor
 .menuWrap ul dl.my p{font-weight:normal; height:25px; line-height:25px; overflow:hidden;}
 
 
-.menuWrap ul a i{display:block; width:45px; height:45px; line-height:45px; margin:0 5px 0 0; overflow:hidden;}
+
 .menuWrap ul ol.footer{position:absolute; left:0; bottom:0; overflow:hidden;}
 
 .menuWrap ul ol:hover dl{display:block;}
@@ -77,7 +78,7 @@ a:link.buttonBG, a:visited.buttonBG{display: inline-block;color: #fff;text-decor
 
 .webMain{padding:0; margin:0 0 0 45px; height:100%; overflow-y:auto;}
 
-
+.mapName{position:absolute; z-index:2; top:0; left:0; width:100%; font-size:20px; color:#fff; height: 45px; line-height:45px; text-align:center;}
 #container{height:100%; background:rgba(38,43,63,1);}
 .amap-logo, .amap-copyright{display:none!important;}
 

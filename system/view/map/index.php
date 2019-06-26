@@ -1,4 +1,5 @@
 <? $this->load_view('header',array('area_id'=>$rs['area_id'])); ?>
+<div class="mapName"><?=$rs['name']?>3D可视化管控图</div>
 <div id="container"></div>
 
 <? $this->load_view('footer'); ?>

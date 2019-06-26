@@ -20,7 +20,7 @@
 			//echo '<h6>'.$this->SYSTEM_CONFIG['webName'].'</h6>';
 			//echo '<p>'.$this->user_arr['purviewgroup_name'].'</p>';
 			//echo '</dl>';
-			$this->CTL_url(array('desktop','index'), '<i class="fa fa-home fa-fw"></i>办公桌面', (Router::$s_controller == 'desktop')?'class="act"':'' );
+			$this->CTL_url(array('desktop','index'), '<i class="fa fa-home fa-fw"></i>桌面', (Router::$s_controller == 'desktop')?'class="act"':'' );
 			echo '</ol>';
 		}
 		/////////////////////////////////////////////
@@ -36,16 +36,33 @@
 					echo '<a '.$act.' href="'.url(array('map','index',$v['area_id'])).'">'.$v['name'].'</a>';
 				}
 			}
-			echo '</dl>';
-
+			echo '</dl>';			
 			$act = (Router::$s_controller == 'map')?'class="act"':'';
-			echo '<a '.$act.' href="'.url(array('map','index')).'"><i class="fa fa-life-ring fa-fw"></i>管控区域</a>';
+			echo '<a '.$act.' href="'.url(array('map','index')).'"><i class="fa fa-life-ring fa-fw"></i>管控</a>';
 			echo '</ol>';
 		}
 		
 		if($this->HCTL_url(array('area','index')) || $this->HCTL_url(array('user','index')) || $this->HCTL_url(array('purviewgroup','index')) ){
 			echo '<ol>';
-			echo '<dl>';	
+			$side_menu = (
+				Router::$s_controller == 'setting' ||
+				Router::$s_controller == 'area' ||
+				Router::$s_controller == 'purviewgroup' ||
+				Router::$s_controller == 'purview' ||
+				Router::$s_controller == 'user'
+				) ? 'system' : '';		
+			if($this->HCTL_url(array('area','index'))){
+				$this->CTL_url(array('area','index'), '<i class="fa fa-gear fa-fw"></i>配置', ($side_menu == 'system') ? 'class="act"' : '');
+			}elseif($this->HCTL_url(array('user','index'))){
+				$this->CTL_url(array('user','index'), '<i class="fa fa-gear fa-fw"></i>配置', ($side_menu == 'system') ? 'class="act"' : '');
+			}elseif($this->HCTL_url(array('setting','index'))){
+				$this->CTL_url(array('setting','index'), '<i class="fa fa-gear fa-fw"></i>配置', ($side_menu == 'system') ? 'class="act"' : '');
+			}elseif($this->HCTL_url(array('purviewgroup','index'))){
+				$this->CTL_url(array('purviewgroup','index'), '<i class="fa fa-gear fa-fw"></i>配置', ($side_menu == 'system') ? 'class="act"' : '');
+			}elseif($this->HCTL_url(array('purview','index'))){
+				$this->CTL_url(array('purview','index'), '<i class="fa fa-gear fa-fw"></i>配置', ($side_menu == 'system') ? 'class="act"' : '');
+			}
+			echo '<dl>';
 			$this->CTL_url(array('area','index'), '区域管理', (Router::$s_controller == 'area') ? 'class="act"' : '');
 			$this->CTL_url(array('user','index'), '用户管理', (Router::$s_controller == 'user') ? 'class="act"' : '');
 			$this->CTL_url(array('purviewgroup','index'), '权限组管理', (Router::$s_controller == 'purviewgroup') ? 'class="act"' : '');
@@ -55,32 +72,14 @@
 				echo '<a href="'.url(array('setting','flushMemcache')).'" onclick="return confirm(\'确定要清理缓存？\');">清理缓存</a>';
 			}
 			echo '</dl>';
-
-			$side_menu = (
-				Router::$s_controller == 'setting' ||
-				Router::$s_controller == 'area' ||
-				Router::$s_controller == 'purviewgroup' ||
-				Router::$s_controller == 'purview' ||
-				Router::$s_controller == 'user'
-				) ? 'system' : '';		
-			if($this->HCTL_url(array('area','index'))){
-				$this->CTL_url(array('area','index'), '<i class="fa fa-gear fa-fw"></i>基础系统', ($side_menu == 'system') ? 'class="act"' : '');
-			}elseif($this->HCTL_url(array('user','index'))){
-				$this->CTL_url(array('user','index'), '<i class="fa fa-gear fa-fw"></i>基础系统', ($side_menu == 'system') ? 'class="act"' : '');
-			}elseif($this->HCTL_url(array('setting','index'))){
-				$this->CTL_url(array('setting','index'), '<i class="fa fa-gear fa-fw"></i>基础系统', ($side_menu == 'system') ? 'class="act"' : '');
-			}elseif($this->HCTL_url(array('purviewgroup','index'))){
-				$this->CTL_url(array('purviewgroup','index'), '<i class="fa fa-gear fa-fw"></i>基础系统', ($side_menu == 'system') ? 'class="act"' : '');
-			}elseif($this->HCTL_url(array('purview','index'))){
-				$this->CTL_url(array('purview','index'), '<i class="fa fa-gear fa-fw"></i>基础系统', ($side_menu == 'system') ? 'class="act"' : '');
-			}
+			
 			echo '</ol>';
 		}
 
 
 		echo '<ol class="footer">';
 		echo '<a href="javascript:;" onclick="openWin(\''.url(array('desktop','my')).'\', \'600px\',\'430px\',\'我的档案\');"><i class="fa fa-user fa-fw"></i>我的</a>';
-		echo '<a href="'.url(array('home','logout')).'" onclick="return confirm(\'确定退出系统？\');"><i class="fa fa-refresh fa-fw"></i>退出系统</a>';
+		echo '<a href="'.url(array('home','logout')).'" onclick="return confirm(\'确定退出系统？\');"><i class="fa fa-refresh fa-fw"></i>退出</a>';
 		echo '</ol>';
 
 
