@@ -1,8 +1,9 @@
 @charset "utf-8";
 /* 后台 */
 html{overflow-y:auto; font:14px "Helvetica Neue",Helvetica,Arial,sans-serif,'Microsoft YaHei';}
-body{background:#161933; line-height:165%; min-width:1366px; margin:0; padding:0; color:#333; font:14px "Helvetica Neue",Helvetica,Arial,sans-serif,'Microsoft YaHei';}
+body{background:#fff; line-height:165%; min-width:1366px; margin:0; padding:0; color:#333; font:14px "Helvetica Neue",Helvetica,Arial,sans-serif,'Microsoft YaHei';}
 body.noBG{background:#fff; min-width:auto;}
+body.mapBody{background:rgba(38,43,63,1); min-width:auto;}
 form,ul,ol,li,dl,dt,dd,form,img,p{margin:0; padding:0; border:none; list-style-type:none;}
 h1,h2,h3,h4,h5,h6{margin:0; padding:0; border:none; list-style-type:none; font-size:14px;}
 img{border:none;}
@@ -12,6 +13,8 @@ select,button,input,textarea{font:14px "Helvetica Neue",Helvetica,Arial,sans-ser
 input{box-sizing:border-box; -moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
 /*select{padding-right:14px;}*/
 table{empty-cells:show; border-collapse:collapse;}
+
+.amap-logo, .amap-copyright{display:none!important;}
 
 input[type=number]{-moz-appearance:textfield;}
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none; margin:0;}
@@ -80,7 +83,8 @@ a:link.buttonBG, a:visited.buttonBG{display: inline-block;color: #fff;text-decor
 
 .mapName{position:absolute; z-index:2; top:0; left:0; width:100%; font-size:20px; color:#fff; height: 45px; line-height:45px; text-align:center;}
 #container{height:100%; background:rgba(38,43,63,1);}
-.amap-logo, .amap-copyright{display:none!important;}
+.mapLoading{text-align:center; color:rgba(255,255,255,.5); padding:20% 0 0 0; overflow:hidden;}
+
 
 
 .tagHeaderMenu{margin:0 0 10px 0;}

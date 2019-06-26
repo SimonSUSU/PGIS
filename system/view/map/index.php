@@ -1,6 +1,6 @@
 <? $this->load_view('header',array('area_id'=>$rs['area_id'])); ?>
 <div class="mapName"><?=$rs['name']?>3D可视化管控图</div>
-<div id="container"></div>
+<div id="container"><p class="mapLoading">加载中...</p></div>
 
 <? $this->load_view('footer'); ?>
 <script language="javascript" src="//webapi.amap.com/maps?v=1.4.9&key=ebd77d08ae12619495fca064ce5c2296&plugin=Map3D"></script>
@@ -12,7 +12,8 @@ function mapInit(){
         viewMode:'3D',//开启3D视图,默认为关闭
         pitch: 50,// 地图俯仰角度，有效范围0度~83度
         //rotation: 90,
-        zoom: 18,//初始地图级别
+        expandZoomRange:true,
+        zoom: 20,//初始地图级别在PC上，默认为[3,18]，取值范围[3-18]；在移动设备上，默认为[3,19],取值范围[3-19] 。当 expandZoomRange 为 true 时，zooms的最大级别在PC上可以扩大到20级。（移动端还是高清19/非高清20 ）
         center: [<?=$rs['lnglat']?>], //初始地图中心点
         resizeEnable: false, //是否监控地图容器尺寸变化
         //mapStyle: 'amap://styles/macaron',
