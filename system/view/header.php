@@ -14,18 +14,16 @@
 	<ul>
 		<?
 		$this->CTL_url(array('desktop','index'), '<i class="fa fa-home fa-fw"></i>桌面', (Router::$s_controller == 'desktop')?'class="act"':'' );
-		$this->CTL_url(array('map','index'), '<i class="fa fa-life-ring fa-fw"></i>管控', (Router::$s_controller == 'map')?'class="act"':'' );
-		$this->CTL_url(array('tag','index'), '<i class="fa fa-home fa-fw"></i>标签', (Router::$s_controller == 'tag')?'class="act"':'' );
-		$this->CTL_url(array('area','index'), '<i class="fa fa-home fa-fw"></i>区域', (Router::$s_controller == 'area')?'class="act"':'' );
-
-		$this->CTL_url(array('user','index'), '<i class="fa fa-user fa-fw"></i>用户', (Router::$s_controller == 'user')?'class="act"':'' );
-		$this->CTL_url(array('purviewgroup','index'), '<i class="fa fa-user fa-fw"></i>权限', (Router::$s_controller == 'purviewgroup' || Router::$s_controller == 'purview')?'class="act"':'' );
-		$this->CTL_url(array('setting','index'), '<i class="fa fa-user fa-fw"></i>配置', (Router::$s_controller == 'setting')?'class="act"':'' );
-
+		$this->CTL_url(array('map','index'), '<i class="fa fa-map-marker fa-fw"></i>管控', (Router::$s_controller == 'map')?'class="act"':'' );
+		$this->CTL_url(array('tag','index'), '<i class="fa fa-tag fa-fw"></i>标签', (Router::$s_controller == 'tag')?'class="act"':'' );
+		$this->CTL_url(array('area','index'), '<i class="fa fa-building fa-fw"></i>区域', (Router::$s_controller == 'area')?'class="act"':'' );
+		$this->CTL_url(array('user','index'), '<i class="fa fa-users fa-fw"></i>用户', (Router::$s_controller == 'user')?'class="act"':'' );
+		$this->CTL_url(array('purviewgroup','index'), '<i class="fa fa-lock fa-fw"></i>权限', (Router::$s_controller == 'purviewgroup' || Router::$s_controller == 'purview')?'class="act"':'' );
+		$this->CTL_url(array('setting','index'), '<i class="fa fa-cog fa-fw"></i>配置', (Router::$s_controller == 'setting')?'class="act"':'' );
 
 		echo '<ol class="footer">';
 		echo '<a href="javascript:;" onclick="openWin(\''.url(array('desktop','my')).'\', \'600px\',\'430px\',\'我的档案\');"><i class="fa fa-user fa-fw"></i>我的</a>';
-		echo '<a href="'.url(array('home','logout')).'" onclick="return confirm(\'确定退出系统？\');"><i class="fa fa-refresh fa-fw"></i>退出</a>';
+		echo '<a href="'.url(array('home','logout')).'" onclick="return confirm(\'确定退出系统？\');"><i class="fa fa-sign-out fa-fw"></i>退出</a>';
 		echo '</ol>';
 
 		/*
@@ -237,7 +235,3 @@
 </div>
 
 <div class="webMain">
-
-
-
-

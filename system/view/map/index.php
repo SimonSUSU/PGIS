@@ -1,8 +1,20 @@
-<? $this->load_view('header',array('area_id'=>$rs['area_id'])); ?>
-<div class="mapName"><?=$rs['name']?>3D可视化管控图</div>
+<?$this->load_view('header',array('area_id'=>$rs['area_id'])); ?>
+<div class="mapName">
+    <select onchange="window.location=this.value;" class="layui-form">
+    <?
+    if(!empty($list_rs)){
+        foreach ($list_rs as $k => $v) {
+            $selected = ($rs['area_id']==$v['area_id']) ? 'selected':'';
+            echo '<option '.$selected.' value="'.url(array('map','index',$v['area_id'])).'">'.$v['name'].'3D可视化管控图</option>';
+        }
+    }
+    ?>
+    </select>
+</div>
+
 <div id="container"><p class="mapLoading">加载中...</p></div>
 
-<? $this->load_view('footer'); ?>
+<?$this->load_view('footer'); ?>
 <script language="javascript" src="//webapi.amap.com/maps?v=1.4.9&key=ebd77d08ae12619495fca064ce5c2296&plugin=Map3D"></script>
 <script language="javascript">
 function mapInit(){
