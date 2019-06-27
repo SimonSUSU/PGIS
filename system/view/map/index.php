@@ -27,27 +27,30 @@ function mapInit(){
         expandZoomRange:true,
         zoom: 20,//初始地图级别在PC上，默认为[3,18]，取值范围[3-18]；在移动设备上，默认为[3,19],取值范围[3-19] 。当 expandZoomRange 为 true 时，zooms的最大级别在PC上可以扩大到20级。（移动端还是高清19/非高清20 ）
         center: [<?=$rs['lnglat']?>], //初始地图中心点
-        resizeEnable: false, //是否监控地图容器尺寸变化
+        resizeEnable: true, //是否监控地图容器尺寸变化
         //mapStyle: 'amap://styles/macaron',
         mapStyle: 'amap://styles/796ce70304e2d57eb38d107d8fb69a52', //加载自定义样式
         //mapStyle: 'amap://styles/midnight',
         //mapStyle: 'amap://styles/a34823489d0167e5c9b9a0eeefcc4c96',
         
-        showIndoorMap: false,//关闭室内地图
-        showBuildingBlock:true,
+        showIndoorMap: true,//关闭室内地图
+        showBuildingBlock:true, //显示建筑物形状
     });
 
     //种类要素显示(bg区域面, point标注,road道路及道路标注,building建筑物)
-    map.setFeatures(['bg','road','building']);    
+    map.setFeatures(['bg','road','building']); 
+
+
 
     // 同时引入工具条插件，比例尺插件和鹰眼插件
     AMap.plugin([
         'AMap.ControlBar',//添加3D罗盘控制
         //'AMap.ToolBar',     //添加工具条控件
         //'AMap.Scale',   //添加比例尺控件
-       // 'AMap.OverView',    //添加鹰眼控件
-       // 'AMap.MapType', //在图面添加类别切换控件
-        //'AMap.Geolocation'  //在图面添加定位控件
+        // 'AMap.OverView',    //添加鹰眼控件
+        // 'AMap.MapType', //在图面添加类别切换控件
+        //'AMap.Geolocation',  //在图面添加定位控件
+        //'AMap.RangingTool',  //距离量测插件
         ], function(){       
             // 添加3D罗盘控制,组合了旋转、倾斜、复位、缩放在内的地图控件，在3D地图模式下会显示
             map.addControl(new AMap.ControlBar());
@@ -68,7 +71,7 @@ function mapInit(){
             //map.addControl(new AMap.Geolocation());
     });
 
-
+    //画圆
     var circle = new AMap.Circle({
         center: new AMap.LngLat(<?=$rs['gltf_lnglat']?>),// 圆心位置
         radius: 3000, //圆半径，单位:米
@@ -123,6 +126,7 @@ function mapInit(){
         $tmp[] = array(
             'name'=>'aaa'.$i,
             'center'=>$lng.','.$lat,
+            'icon'=>IMG_PATH.'mapmarkers/'.rand(1,5).'.png'
         );
     }
     echo 'var provinces = '.json_encode($tmp);
@@ -150,7 +154,9 @@ function mapInit(){
     for (var i = 0; i < provinces.length; i += 1){
         var marker;
         var icon = new AMap.Icon({
-            image: 'http://vdata.amap.com/icons/b18/1/2.png'
+            size: new AMap.Size(50,50),    // 图标尺寸            
+            image: provinces[i].icon,
+            imageSize: new AMap.Size(50, 50),   // 根据所设置的大小拉伸或压缩图片
         });
         marker = new AMap.Marker({
             position: provinces[i].center.split(','),
