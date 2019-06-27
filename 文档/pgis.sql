@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50554
 File Encoding         : 65001
 
-Date: 2019-06-26 18:58:16
+Date: 2019-06-27 09:39:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -243,6 +243,26 @@ CREATE TABLE `wz_setting` (
 -- Records of wz_setting
 -- ----------------------------
 INSERT INTO `wz_setting` VALUES ('1', '图盾', 'www.pgis.com', '华盾空间数据可视化平台', 'simon@jianzu.info', '400-662-3920', '海口市龙华区滨海大道复兴城D3区1层', '<p>本项目旨在建设惠农超市信息化平台，积极创新扶贫扶志模式，打造“脱贫攻坚惠农超市”，通过信息化系统的搭建，智能化物联网的应用，构建全链扶贫工作信息化应用体系，实现移动化、智能化的深度扶贫惠农。通过政府主导、社会捐助、农户参与的方式，按照县为单位、规模控制、分级管理、精准识别的原则，对贫困户和普通村民建档立卡，村民通过社会劳动换积分，即可凭村民名下的积分在惠农超市内进行商品兑换。本方案对信息化平台搭建、惠农超市申报/入库/出售/核算的智能化应用及配套终端、村民建档/积分管理/实名消费、政府科学管理平台等方面做出详细可行性方案阐述，以帮助惠农超市实现低成本快速布点、村民物资获取更便捷、扶贫惠农工作更精准、更阳光，推动扶贫工作由粗放到集约、由漫灌到滴灌的实质性转变，切实做到扶真贫、真扶贫。</p>', '沪ICP备16027162号', '图盾空间数据可视化平台', '空间数据可视化平台');
+
+-- ----------------------------
+-- Table structure for wz_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `wz_tag`;
+CREATE TABLE `wz_tag` (
+  `tag_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '标签名',
+  `pic` varchar(255) DEFAULT NULL COMMENT '标签图标',
+  `sorting` int(11) unsigned DEFAULT '0' COMMENT '排序：从大到小',
+  `status` tinyint(1) unsigned DEFAULT '1' COMMENT '状态：1启用，2禁用',
+  `add_time` int(11) unsigned DEFAULT '0' COMMENT '注册时间',
+  `last_time` int(11) unsigned DEFAULT '0' COMMENT '最后修改时间',
+  PRIMARY KEY (`tag_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='标签表';
+
+-- ----------------------------
+-- Records of wz_tag
+-- ----------------------------
+INSERT INTO `wz_tag` VALUES ('1', 'aaa', 'upload/tagpic/201906/27/1075d141de012efe5.jpg', '11', '1', '1561599408', '1561599456');
 
 -- ----------------------------
 -- Table structure for wz_user
