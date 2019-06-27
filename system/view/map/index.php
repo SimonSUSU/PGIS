@@ -69,7 +69,6 @@ function mapInit(){
     });
 
 
-
     var circle = new AMap.Circle({
         center: new AMap.LngLat(<?=$rs['gltf_lnglat']?>),// 圆心位置
         radius: 3000, //圆半径，单位:米
@@ -82,7 +81,6 @@ function mapInit(){
         strokeStyle:'dashed', //轮廓线样式，实线:solid，虚线:dashed
     });
     circle.setMap(map);   
-
 
 
     // 创建Object3DLayer图层
@@ -106,5 +104,68 @@ function mapInit(){
             object3Dlayer.add(gltfCity);
         });
     });
+
+
+
+
+    ///////////////// 标注点开始 /////////////////////////
+    <?
+    $tmp = array();
+    $lnglat_arr = explode(',',$rs['lnglat']);
+    for ($i=0; $i<10; $i++) {
+        if(rand(1,2)==1){
+            $lng = $lnglat_arr[0] - 0.000001*rand(2000,-100);
+            $lat = $lnglat_arr[1] - 0.000001*rand(2000,-100);
+        }else{
+            $lng = $lnglat_arr[0] + 0.000001*rand(2000,-100);
+            $lat = $lnglat_arr[1] + 0.000001*rand(2000,-100);
+        }
+        $tmp[] = array(
+            'name'=>'aaa'.$i,
+            'center'=>$lng.','.$lat,
+        );
+    }
+    echo 'var provinces = '.json_encode($tmp);
+    ?>
+    /*
+    var provinces = [{
+        "name": "aaaa",
+        "center": "110.369582,20.02657",
+        "type": 0,
+        "subDistricts": []
+    }, {
+        "name": "bbbb",
+        "center": "110.369502,20.02657",
+        "type": 1,
+        "subDistricts": []
+    }, {
+        "name": "ccccc",
+        "center": "110.369452,20.02657",
+        "type": 1,
+        "subDistricts": []
+    }];
+    */
+
+    var markers = []; //province见Demo引用的JS文件
+    for (var i = 0; i < provinces.length; i += 1){
+        var marker;
+        var icon = new AMap.Icon({
+            image: 'http://vdata.amap.com/icons/b18/1/2.png'
+        });
+        marker = new AMap.Marker({
+            position: provinces[i].center.split(','),
+            title: provinces[i].name,
+            //content: 'abc',
+            icon: icon,
+            //zIndex: 101,
+            //offset: new AMap.Pixel(0,0),
+            map:map
+        });
+        markers.push(marker);
+    }
+
+    //map.setFitView();
+    /////////////////////////  标注结束  ////////////////////////
+
 }
 </script>
