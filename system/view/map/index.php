@@ -91,7 +91,7 @@ function mapInit(){
     map.add(object3Dlayer);
     
     map.plugin(["AMap.GltfLoader"],function(){
-        var urlCity = '<?=$rs['gltf_file']?>';
+        var urlCity = '<?=$rs['gltf_file']?>';        
         var paramCity = {
             position: new AMap.LngLat(<?=$rs['gltf_lnglat']?>), // 必须
             scale: <?=$rs['gltf_scale']?>, // 非必须，默认1, 设置模型缩放倍数
@@ -106,13 +106,45 @@ function mapInit(){
             gltfCity.rotateZ(<?=$rs['gltf_rotateZ']?>);
             object3Dlayer.add(gltfCity);
         });
+
+
+        <?
+        $lnglat_arr = explode(',',$rs['lnglat']);
+        for ($i=0; $i<10; $i++) {
+            if(rand(1,2)==1){
+                $lng = $lnglat_arr[0] - 0.000001*rand(2000,-100);
+                $lat = $lnglat_arr[1] - 0.000001*rand(2000,-100);
+            }else{
+                $lng = $lnglat_arr[0] + 0.000001*rand(2000,-100);
+                $lat = $lnglat_arr[1] + 0.000001*rand(2000,-100);
+            }
+            echo 'var urlCity'.$i.' = \'/static/tmp/marker.gltf\';';
+
+            echo 'var paramCity'.$i.' = {
+                    position: new AMap.LngLat('.$lng.','.$lat.'), // 必须
+                    scale: 100, // 非必须，默认1, 设置模型缩放倍数
+                    height: 0,  // 非必须，默认0, 设置模型高度
+                    scene: '.$i.', // 非必须，默认0    ,设置当前场景序号
+                } 
+                var gltfObj = new AMap.GltfLoader();
+                gltfObj.load(urlCity'.$i.', function(gltfCity'.$i.'){
+                    gltfCity'.$i.'.setOption(paramCity'.$i.');
+                    gltfCity'.$i.'.rotateX(90);
+                    gltfCity'.$i.'.rotateY(0);
+                    gltfCity'.$i.'.rotateZ(0);
+                    object3Dlayer.add(gltfCity'.$i.');
+                });
+            ';
+        }
+        ?>
+
     });
 
 
 
 
     ///////////////// 标注点开始 /////////////////////////
-    <?
+    <?/*
     $tmp = array();
     $lnglat_arr = explode(',',$rs['lnglat']);
     for ($i=0; $i<10; $i++) {
@@ -130,6 +162,7 @@ function mapInit(){
         );
     }
     echo 'var provinces = '.json_encode($tmp);
+    */
     ?>
     /*
     var provinces = [{
@@ -149,7 +182,7 @@ function mapInit(){
         "subDistricts": []
     }];
     */
-
+    /*
     var markers = []; //province见Demo引用的JS文件
     for (var i = 0; i < provinces.length; i += 1){
         var marker;
@@ -169,6 +202,7 @@ function mapInit(){
         });
         markers.push(marker);
     }
+    */
 
     //map.setFitView();
     /////////////////////////  标注结束  ////////////////////////
