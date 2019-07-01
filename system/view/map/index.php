@@ -124,7 +124,7 @@ function mapInit(){
                     position: new AMap.LngLat('.$lng.','.$lat.'), // 必须
                     scale: 100, // 非必须，默认1, 设置模型缩放倍数
                     height: 0,  // 非必须，默认0, 设置模型高度
-                    scene: '.$i.', // 非必须，默认0    ,设置当前场景序号
+                    scene: 0, // 非必须，默认0    ,设置当前场景序号
                 } 
                 var gltfObj = new AMap.GltfLoader();
                 gltfObj.load(urlCity'.$i.', function(gltfCity'.$i.'){
