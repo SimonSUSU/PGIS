@@ -158,25 +158,25 @@ class areaClass extends Controllers{
         if(isset($post['status'])){
             $data['status'] = $post['status'];
         }
-        if(!empty($post['gltf_scale'])){
+        if(isset($post['gltf_scale'])){
             $data['gltf_scale'] = $post['gltf_scale'];
         }
-        if(!empty($post['gltf_height'])){
+        if(isset($post['gltf_height'])){
             $data['gltf_height'] = $post['gltf_height'];
         }
-        if(!empty($post['gltf_scene'])){
+        if(isset($post['gltf_scene'])){
             $data['gltf_scene'] = $post['gltf_scene'];
         }
-        if(!empty($post['gltf_lnglat'])){
+        if(isset($post['gltf_lnglat'])){
             $data['gltf_lnglat'] = $post['gltf_lnglat'];
         }
-        if(!empty($post['gltf_rotateX'])){
+        if(isset($post['gltf_rotateX'])){
             $data['gltf_rotateX'] = $post['gltf_rotateX'];
         }
-        if(!empty($post['gltf_rotateY'])){
+        if(isset($post['gltf_rotateY'])){
             $data['gltf_rotateY'] = $post['gltf_rotateY'];
         }
-        if(!empty($post['gltf_rotateZ'])){
+        if(isset($post['gltf_rotateZ'])){
             $data['gltf_rotateZ'] = $post['gltf_rotateZ'];
         }
 

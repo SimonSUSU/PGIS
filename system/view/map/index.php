@@ -41,7 +41,6 @@ function mapInit(){
     map.setFeatures(['bg','road','building']); 
 
 
-
     // 同时引入工具条插件，比例尺插件和鹰眼插件
     AMap.plugin([
         'AMap.ControlBar',//添加3D罗盘控制
